@@ -13,7 +13,9 @@ class UserController extends Controller
 public function showCreateNewUserForm(){
         return view('createUser');
     }
-
+public function aboutPage(){
+    return view("about");
+}
 
 public function storeUserData(Request $req){
         // return $req-> input('email')
@@ -30,6 +32,10 @@ $userModel->password = $req->password;
 $userModel->save();
 
 return redirect(route('show_users'))->with('success', "New User Created Successfully");    }
+
+public function contact(){
+    return view("contact");
+}
 
 public function showUsers(){
 
