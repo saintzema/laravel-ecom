@@ -10,7 +10,7 @@
         <div class="font-bold text-blue-400">{{$job->employer->company}}</div>
 
         <div>
-        <strong>{{$job['title']}}:</strong> Pays {{$job['salary']}} per year.
+        <strong>{{$job->title}}:</strong> Pays {{$job->salary}} per year.
 </div>
     </a>
 

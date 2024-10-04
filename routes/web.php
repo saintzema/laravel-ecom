@@ -5,26 +5,28 @@ use App\Http\Controllers\UserController;
 use App\Models\Job;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisteredUserController;
 
-Route::get('/', fn() => view('welcome')
+//Index
+Route::view('/', fn() => view('welcome')
 
 );
 
+Route::controller(JobController::class)->group(function() {
 
-
+Route::get('/jobs/create', 'create')->name('jobs.create');
+Route::get('/jobs/{id}', 'show')->name('jobs.show');
+Route::post('/jobs', 'store')->name('jobs.store');
+Route::get('/jobs/{id}/edit', 'edit')->name('edit');
+Route::patch('/jobs/{id}', 'update')->name('update');
+Route::delete('/jobs/{job}', 'destroy');
+});
 
 Route::get('/jobs', [JobController::class, 'index']);
 
-Route::get('/jobs/create', function(){
-return view('create');
-});
+Route::get('/register', [RegisteredUserController::class, 'create']);
 
-    Route::get('/jobs/{id}', function($id) {
 
-            $job = Arr::first(Job::all(), fn($job)=>$job['id'] == $id);
-
-                return view('jobs.show', ['job' => $job]);
-    });
 
 Route::get('/contact', [UserController::class, "contact"])->name('contact');
 

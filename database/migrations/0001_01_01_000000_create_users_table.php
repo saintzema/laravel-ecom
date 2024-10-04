@@ -24,11 +24,11 @@ return new class extends Migration
         });
 
         //Copy data from name to firstname
-        DB::statement('UPDATE users SET first_name = name');
+        // DB::statement('UPDATE users SET first_name = name');
 
-        Schema::table('users', function(Blueprint $table){
-            $table->dropColumn('name');
-        });
+        // Schema::table('users', function(Blueprint $table){
+        //     $table->dropColumn('name');
+        // });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

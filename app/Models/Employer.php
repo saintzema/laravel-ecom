@@ -9,8 +9,7 @@ use App\Models\Job;
 class Employer extends Model
 {
     use HasFactory;
-    protected $table = 'employer';
-    protected $fillable = ['company',  'job', 'location', 'description'];
+    protected $fillable = ['company', 'location'];
 
     public function jobs(){
         return $this->hasMany(Job::class);

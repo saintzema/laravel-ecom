@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Employer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +14,12 @@ return new class extends Migration
     {
         Schema::create('job_listings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Employer::class)->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('salary');
+            $table->decimal('salary', 10, 2);
+            $table->text('description');
+            $table->string('company');
+            $table->string('location');
             $table->timestamps();
         });
     }

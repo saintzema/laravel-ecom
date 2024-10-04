@@ -22,11 +22,10 @@ class EmployerFactory extends Factory
             'company' => $this->faker->company(),
             // 'job' => $this->faker->jobTitle(),
             'location'=> $this->faker->city(),
-            'description' =>$this->faker->text(),
             //
         ];
     }
-    public function withJobs($count = 3){
-        return $this->has(Job::factory()->count($count), 'jobs');
-    }
+    // public function withJobs($count = 3){
+    //     return $this->has(Job::factory()->count($count), 'jobs');
+    // }
 }

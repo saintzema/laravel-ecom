@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
+    <title>Job Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -80,8 +80,8 @@
                         <img class="h-10 w-10 rounded-full" src="https://laracasts.com/images/lary-ai-face.svg" alt="">
                     </div>
                     <div class="ml-3">
-                        <div class="text-base font-medium leading-none text-white">Lary Robot</div>
-                        <div class="text-sm font-medium leading-none text-gray-400">jeffrey@laracasts.com</div>
+                        <div class="text-base font-medium leading-none text-white">Zema</div>
+                        <div class="text-sm font-medium leading-none text-gray-400">techzema@gmail.com</div>
                     </div>
                     <button type="button" class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
@@ -96,9 +96,10 @@
     </nav>
 
     <header class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
-        </div>
+<x-button href="/jobs/create">Create Job</x-button>
+ </div>
     </header>
 
     <main>
