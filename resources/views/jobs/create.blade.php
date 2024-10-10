@@ -35,10 +35,8 @@
             <div class="sm:col-span-4">
               <label for="salary" class="block text-sm font-bold leading-6 text-gray-900">Salary</label>
               <div class="mt-2">
-                <x-form-input name='title' id='title' aria-placeholder="CEO" required/>
-                @error('salary')
-                <p class="text-xs text-red-500 font-semibold  font-italics mt-1">{{$message}}</p>
-              @enderror
+                <x-form-input name='salary' id='salary' placeholder="$50,000" required/>
+                <x-form-error name="salary"></x-form-error>
                 <div>
                   <textarea class="my-6 w-200" name="description" placeholder="Job Description" ></textarea> <!-- Ensure this field exists -->
                 </div>

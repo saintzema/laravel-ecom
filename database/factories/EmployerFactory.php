@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 use App\Models\Job;
 use App\Illuminate\Database\Factories\JobFactory;
 
@@ -22,6 +23,7 @@ class EmployerFactory extends Factory
             'company' => $this->faker->company(),
             // 'job' => $this->faker->jobTitle(),
             'location'=> $this->faker->city(),
+            'user_id' => User::factory(),
             //
         ];
     }

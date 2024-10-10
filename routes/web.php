@@ -6,25 +6,38 @@ use App\Models\Job;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\SessionController;
 
 //Index
-Route::view('/', fn() => view('welcome')
+Route::get('/', fn() => view('welcome'));
 
-);
+Route::resource('jobs', JobController::class)->middleware('auth');
 
-Route::controller(JobController::class)->group(function() {
+Route::middleware(['auth'])->group(function() {
 
-Route::get('/jobs/create', 'create')->name('jobs.create');
-Route::get('/jobs/{id}', 'show')->name('jobs.show');
-Route::post('/jobs', 'store')->name('jobs.store');
-Route::get('/jobs/{id}/edit', 'edit')->name('edit');
-Route::patch('/jobs/{id}', 'update')->name('update');
-Route::delete('/jobs/{job}', 'destroy');
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
+Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
+Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store');
+
+Route::get('/jobs/{id}/edit', [JobController::class, 'edit'])
+    ->middleware('auth')
+    ->can('edit', 'job');
+
+
+Route::patch('/jobs/{id}', [JobController::class, 'update'])->name('update');
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 });
 
 Route::get('/jobs', [JobController::class, 'index']);
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::post('/register',[RegisteredUserController::class, 'store']);
+
+Route::get('/login', [SessionController::class, 'create'])->name('login');
+Route::post('/login', [SessionController::class, 'store']);
+
+Route::post('logout', [SessionController::class, 'destroy']);
 
 
 

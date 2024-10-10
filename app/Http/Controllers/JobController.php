@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Employer;
 use Illuminate\Container\Attributes\Log;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth; // Add this line
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class JobController extends Controller
 {
@@ -36,15 +39,21 @@ class JobController extends Controller
         return redirect('/jobs/'.$job->id);
     }
 
-    public function edit($id)
+    public function edit(Job $job)
     {
-        $job = Job::find($id);
-        return view('jobs.edit', ['job'=>$job]);
+        Gate::define('edit-job', function (User $user, Job $job){
+return $job->employer->user->is($user);
+        });
+            
+        Gate::authorize('edit-job', $job);
+      
+        return view('jobs.edit', ['job'=> $job]);
     }
+    
 
     public function show($id)
     {
-        $job = Arr::first(Job::all(), fn($job)=>$job['id'] == $id);
+        $job = Job::find($id);
         return view('jobs.show', ['job' => $job]);
     }
 

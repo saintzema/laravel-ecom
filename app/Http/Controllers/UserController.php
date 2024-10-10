@@ -20,13 +20,15 @@ public function aboutPage(){
 public function storeUserData(Request $req){
         // return $req-> input('email')
 $req -> validate([
-    'name' => 'required|string',
+    'first_name' => 'required|string',
+    'last_name' => 'required|string',
     'email' => 'required|unique:users,email',
     'password' => 'required|min:6'],
 );
 
 $userModel = new User();
-$userModel->name = $req->name;
+$userModel->first_name = $req->first_name;
+$userModel->last_name = $req->last_name;
 $userModel->email = $req->email;
 $userModel->password = $req->password;
 $userModel->save();
@@ -56,13 +58,15 @@ public function showUsers(){
 
 public function updateUser(User $user, Request $req){
         $req->validate([
-            'name' => 'string|required',
+            'first_name' => 'string|required',
+            'last_name' => 'string|required',
             'email' => 'email|unique:users,email|required',
             'password' => 'required|min:6'
         ]);
 
         $user -> update([
-            'name' => $req -> name,
+            'first_name' => $req -> first_name,
+            'last_name' => $req -> last_name,
             'email' => $req -> email,
         ]);
 
